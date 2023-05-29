@@ -71,23 +71,23 @@ export default function App() {
   }, [words])
 
   return (
-    <div className="relative flex w-full h-screen">
-      <div className="flex flex-col space-y-6 max-w-5xl mx-auto my-16">
-        <h1 className="text-2xl text-gray-800 font-medium mx-auto">How fast are Cloudflare Workers + Workers KV?</h1>
+    <div className="relative flex h-screen">
+      <div className="flex flex-col space-y-6 max-w-sm sm:max-w-5xl mx-auto my-16">
+        <h1 className="text-md sm:text-2xl text-gray-800 font-medium mx-auto">How fast are Cloudflare Workers + Workers KV?</h1>
         <button
           onClick={start}
           disabled={status !== READY}
-          className="mx-auto px-6 py-3 rounded bg-gray-50 borde border-gray-100 hover:bg-gray-100 text-[#F48120]"
+          className="mx-auto px-6 py-3 rounded bg-gray-50 hover:bg-gray-100 text-[#F48120]"
         >
           Let's take a look...
         </button>
         <div className={clsx(
-
-            'flex flex-col space-y-5 mx-auto rounded p-6'
+            // status !== READY && 'border border-gray-100 rounded-md shadow-sm',
+            'flex flex-col space-y-5 mx-auto rounded'
           )}
         >
           {words.map((word, paraIndex) => 
-            <p className="w-[50rem] text-left prose text-gray-700 whitespace-pre-wrap">
+            <p className="px-2 sm:px-0 sm:w-[50rem] text-left prose text-gray-700 whitespace-pre-wrap">
               {word.map(w => <Word word={w.word} fadeIn={paraIndex !== 0}/>)}
             </p>
           )}
@@ -97,12 +97,12 @@ export default function App() {
               <div 
                 className={clsx(
                   status !== COMPLETE && 'opacity-0',
-                  'flex  flex-col space-y-6 transition duration-1000 ease-in'
+                  'flex flex-col space-y-6 transition duration-1000 ease-in'
                 )}
               >
                 <div className="flex flex-col space-y-1 divide-y divide-gray-100">
                   <h3 className="text-xl font-medium text-gray-700">Analytics</h3>
-                  <div className="grid gap-4 grid-cols-3 py-5">
+                  <div className="grid gap-y-4 sm:gap-4 grid-cols-1 sm:grid-cols-3 py-5">
                     <div className="flex flex-col border border-gray-100 rounded shadow-sm py-5">
                       <div className="mx-auto">
                         <p className="text-sm text-gray-500">Requests (Worker + KV)</p>
@@ -124,16 +124,14 @@ export default function App() {
                   </div>             
                 </div>
 
-                <div className="flex flex-col space-y-1 divid divide-gray-100">
+                <div className="flex flex-col space-y-1 divid divide-gray-100 pb-6">
                   <h3 className="text-md font-light text-gray-400">Powered by</h3>
                   <div className="flex space-x-10">
-                    <div className="w-40 pt-2">
+                    <div className="w-36 pt-2">
                       <WorkersLogo />
                     </div>
-                    <div className="w-36">
+                    <div className="w-32">
                       <PagesLogo />
-                    </div>
-                    <div className="w-40 pt-2">
                     </div>
                   </div>
                 </div>
