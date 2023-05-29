@@ -100,8 +100,8 @@ export default function App() {
                   'flex  flex-col space-y-6 transition duration-1000 ease-in'
                 )}
               >
-                <div className="flex flex-col space-y-2 divide-y divide-gray-100">
-                  <h3 className="text-xl font-medium text-gray-800">Analytics</h3>
+                <div className="flex flex-col space-y-1 divide-y divide-gray-100">
+                  <h3 className="text-xl font-medium text-gray-700">Analytics</h3>
                   <div className="grid gap-4 grid-cols-3 py-5">
                     <div className="flex flex-col border border-gray-100 rounded shadow-sm py-5">
                       <div className="mx-auto">
