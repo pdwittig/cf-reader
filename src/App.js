@@ -4,6 +4,7 @@ import WorkersLogo  from './components/WorkersLogo';
 import PagesLogo  from './components/PagesLogo'
 
 const API_BASE_URL = 'https://cf-reader.pdwittig.workers.dev';
+const READY = 'ready';
 const COMPLETE = 'complete';
 const PROCESSING = 'processing';
 
@@ -25,7 +26,7 @@ export default function App() {
   }, [])
 
   const start = useCallback(async () => {
-    console.log('re-re')
+    setStatus(PROCESSING)
     const wordsToFetch = Array.from(Array(count).keys());
 
     const fetchWord = (index) => {
@@ -40,10 +41,10 @@ export default function App() {
     }
 
     const updateWords = word => {
-      // const [index, word, duration] = data
       if (word.index + 1 >= count) {
         setStatus(COMPLETE)
       }
+
       return setWords(w => {
         if (word.word === '**Break**') return [...w, []]
        
@@ -69,13 +70,13 @@ export default function App() {
     return flat.reduce((sum, word) => word.duration + sum, 0)
   }, [words])
 
-  console.log(words)
   return (
     <div className="relative flex w-full h-screen">
       <div className="flex flex-col space-y-6 max-w-5xl mx-auto my-16">
         <h1 className="text-2xl text-gray-800 font-medium mx-auto">How fast are Cloudflare Workers + Workers KV?</h1>
         <button
           onClick={start}
+          disabled={status !== READY}
           className="mx-auto px-6 py-3 rounded bg-gray-50 borde border-gray-100 hover:bg-gray-100 text-[#F48120]"
         >
           Let's take a look...
